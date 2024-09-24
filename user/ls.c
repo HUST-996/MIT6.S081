@@ -54,7 +54,7 @@ ls(char *path)
       break;
     }
     strcpy(buf, path);
-    p = buf+strlen(buf);
+    p = buf+strlen(buf); //p指针指向buf末尾
     *p++ = '/';
     while(read(fd, &de, sizeof(de)) == sizeof(de)){
       if(de.inum == 0)
@@ -76,11 +76,12 @@ int
 main(int argc, char *argv[])
 {
   int i;
-
+  //如果参数小于2，即只有一个ls
   if(argc < 2){
     ls(".");
     exit(0);
   }
+  //如果参数大于等于2，就将后面路径下的文件展示出来
   for(i=1; i<argc; i++)
     ls(argv[i]);
   exit(0);
